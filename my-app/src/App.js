@@ -12,13 +12,92 @@ import project5 from './images/Marketing Platform.jpg';
 import project6 from './images/Book a Flight.png';
 
 export class App extends Component {
+constructor(props){
+  super(props);
+
+this.state = ({
+  topBar: {
+    position: 'absolute',
+    width: '100%',
+    height: '10px',
+    background: 'white',
+    top: '20%',
+    transition: '1s'
+  },
+  bottomBar: {
+    position: 'absolute',
+    width: '100%',
+    height: '10px',
+    background: 'white',
+    top: '60%',
+    transition: '1s'
+  }
+})
+}
+  
+  componentDidMount(){
+
+  }
+
+  barsAnime = ()=>{
+
+     if(this.state.topBar.top === '20%'){
+       console.log('Worked!')
+       this.setState({topBar: {
+        position: 'absolute',
+        width: '100%',
+        height: '10px',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        transform: 'rotate(-130deg)',
+        transition: '1s',
+        background: 'white'
+       },
+       bottomBar: {
+        position: 'absolute',
+        width: '100%',
+        height: '10px',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        transform: 'rotate(130deg)',
+        transition: '1s',
+        background: 'white'
+       }
+       })
+     } else{
+      this.setState({topBar: {
+        position: 'absolute',
+        width: '100%',
+        height: '10px',
+        background: 'white',
+        top: '20%',
+        transition: '1s'
+      },
+      bottomBar: {
+        position: 'absolute',
+        width: '100%',
+        height: '10px',
+        background: 'white',
+        top: '60%',
+        transition: '1s'
+      }
+      
+       })
+       console.log(this.state.topBar);
+     }
+ 
+  };
+
   render() {
+
+  
+
     return (
      <React.Fragment>
 
-     <div className="navbar-cont">
-     <div className="top-bar"></div>
-     <div className="bottom-bar"></div>
+     <div className="navbar-cont" onClick={this.barsAnime}>
+     <div style={this.state.topBar} className="top-bar"></div>
+     <div style={this.state.bottomBar} className="bottom-bar"></div>
      </div>
 
      <div className="welcome-page-cont">
@@ -91,7 +170,7 @@ export class App extends Component {
      <div className="container-fluid">
      <div className="row">
      <div className="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 contact">
-     <form>
+     <form action="/submit" method="POST">
      <input type="text" placeholder="Your Name*" name="name" required/>
      <input type="email" placeholder="Your Email*" name="email" required/>
      <input type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="Your Phone No." name="phone" />

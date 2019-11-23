@@ -5,6 +5,7 @@ const port = process.env.PORT || 5000;
 const path = require('path');
 const cors = require('cors');
 const env = require('dotenv/config');
+const MongoDB = require('mongodb').MongoClient;
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -28,11 +29,36 @@ app.use(bodyParser.json());
     });
  */
 
-app.get('/submit', (req, res)=>{
+app.post('/submit', (req, res)=>{
 
+  //MongoDB.connect(URI, ()=>{
+    
+    if(!req.body.phone){
+      var formData = {
+        Name: req.body.name,
+        Email: req.body.email,
+        Phone: 'N/A',
+        Message: req.body.message
+      }
+      res.json(formData);
+      console.log(formData);
+    } else{
+      var formData = {
+        Name: req.body.name,
+        Email: req.body.email,
+        Phone: req.body.phone,
+        Message: req.body.message
+      }
+      console.log(formData);
+      res.json(formData);
+    }
+    
+    
+    if(err) throw err;
+
+
+  //})
 
 });
 
 app.listen(port, () => console.log('Server is listening...'));
-
-var test = 'Hello Test';
