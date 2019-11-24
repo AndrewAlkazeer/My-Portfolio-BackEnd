@@ -5,7 +5,24 @@ const port = process.env.PORT || 5000;
 const path = require('path');
 const cors = require('cors');
 const env = require('dotenv/config');
-const MongoDB = require('mongodb').MongoClient;
+const Mongoose = require('mongoose');
+
+var userSchema = Mongoose.Schema;
+
+var templateLove = new userSchema({
+  IP: String,
+  Love: Number
+})
+const modelClassLove = Mongoose.model('LoveUser', templateLove);
+
+var template = new userSchema({
+  Name: String,
+  Email: String,
+  Phone: String,
+  Message: String
+})
+const modelClass = Mongoose.model('ContactUser', template);
+
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -29,35 +46,61 @@ app.use(bodyParser.json());
     });
  */
 
+app.post('/loves', (req, res)=>{
+
+  Mongoose.connect(process.env.URI, { useNewUrlParser: true }, (err)=>{
+    if(err) throw err;
+
+// Error Here needs to be fixed
+
+  if(!req.ip){
+  var data = new modelClassLove({
+    IP: req.ip,
+    Love: 1
+  })
+  data.save((err)=>{
+    if(err) throw err;
+  })
+}
+});
+return res.redirect('/');
+});
+
 app.post('/submit', (req, res)=>{
 
-  //MongoDB.connect(URI, ()=>{
-    
+  Mongoose.connect(process.env.URI, { useNewUrlParser: true }, (err)=>{
+    if(err) throw err;
+
     if(!req.body.phone){
-      var formData = {
+      var data = new modelClass({
         Name: req.body.name,
         Email: req.body.email,
         Phone: 'N/A',
         Message: req.body.message
-      }
-      res.json(formData);
-      console.log(formData);
+      })
+
+      data.save((err)=>{
+        if(err) console.log('Error Saving to the database');
+      });
+
+      res.send('YOUR MESSAGE HAS BEEN SUBMITTED SUCCESSFULLY, I WILL GET BACK TO YOU ASAP!');
+
     } else{
-      var formData = {
+      var data = new modelClass({
         Name: req.body.name,
         Email: req.body.email,
         Phone: req.body.phone,
         Message: req.body.message
-      }
-      console.log(formData);
-      res.json(formData);
+      })
+
+      data.save((err)=>{
+        if(err) console.log('Error Saving to the database');
+      });
+      
+     res.send('YOUR MESSAGE HAS BEEN SUBMITTED SUCCESSFULLY, I WILL GET BACK TO YOU ASAP!');
     }
-    
-    
-    if(err) throw err;
 
-
-  //})
+  })
 
 });
 

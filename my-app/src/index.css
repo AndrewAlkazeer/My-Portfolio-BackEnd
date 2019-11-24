@@ -580,7 +580,12 @@ code {
   border: 5px solid #ffce0a;
   left: 50%;
   transform: translateX(-50%);
-  
+}
+
+small{
+  position: relative;
+  font-size: medium;
+  color: white;
 }
 
 .contact form button{

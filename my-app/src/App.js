@@ -320,7 +320,9 @@ navOnClick = () =>{
      <div className="spread-love-cont">
      <p>SPREAD THE LOVE</p>
      <p>0 LOVES</p>
-     <i className="glyphicon glyphicon-heart-empty"></i>
+     <form action="/loves" method="POST">
+     <button type="submit"><i className="glyphicon glyphicon-heart-empty"></i></button>
+     </form>
      </div>
 
      <div className="welcome-page-cont">
@@ -462,8 +464,9 @@ navOnClick = () =>{
      <form action="/submit" method="POST">
      <input type="text" placeholder="Your Name*" name="name" required/>
      <input type="email" placeholder="Your Email*" name="email" required/>
-     <input type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="Your Phone No." name="phone" />
+     <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Your Phone No." name="phone" />
      <textarea placeholder="Your Message*" name="message" required/>
+     <small>Format: 123-456-7890</small>
      <div><button type="submit">SEND MESSAGE<i className="glyphicon glyphicon-chevron-right"></i></button></div>
      </form>
      </div>
