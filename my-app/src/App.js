@@ -16,7 +16,7 @@ constructor(props){
   super(props);
 
 this.state = ({
-  topBar: {
+    topBar: {
     position: 'absolute',
     width: '100%',
     height: '10px',
@@ -24,13 +24,48 @@ this.state = ({
     top: '20%',
     transition: '1s'
   },
-  bottomBar: {
+    bottomBar: {
     position: 'absolute',
     width: '100%',
     height: '10px',
     background: 'white',
     top: '60%',
     transition: '1s'
+  },
+    hiddenMenu: {
+    position: 'fixed',
+    width: '100%',
+    height: '100%',
+    background: 'white',
+    left: '0',
+    top: '0',
+    zIndex: '3',
+    transition: '1s',
+    top: '-100%'
+  },
+    dividerLineOne: {
+    width: '100px',
+    height: '5px',
+    background: '#ffce0a',
+    transition: '0.5s'
+  },
+    dividerLineTwo: {
+    width: '100px',
+    height: '5px',
+    background: '#ffce0a',
+    transition: '0.5s'
+  },
+    dividerLineThree: {
+    width: '100px',
+    height: '5px',
+    background: '#ffce0a',
+    transition: '0.5s'
+  },
+    dividerLineFour: {
+    width: '100px',
+    height: '5px',
+    background: '#ffce0a',
+    transition: '0.5s'
   }
 })
 }
@@ -42,7 +77,6 @@ this.state = ({
   barsAnime = ()=>{
 
      if(this.state.topBar.top === '20%'){
-       console.log('Worked!')
        this.setState({topBar: {
         position: 'absolute',
         width: '100%',
@@ -62,6 +96,18 @@ this.state = ({
         transform: 'rotate(130deg)',
         transition: '1s',
         background: 'white'
+       },
+       hiddenMenu: {
+        position: 'fixed',
+        width: '100%',
+        height: '100vh',
+        background: 'black',
+        left: '0',
+        top: '0',
+        zIndex: '3',
+        transition: '1s',
+        top: '0%',
+        transitionTimingFunction: 'cubic-bezier(.17,.67,.83,.67)'
        }
        })
      } else{
@@ -80,13 +126,156 @@ this.state = ({
         background: 'white',
         top: '60%',
         transition: '1s'
-      }
-      
+      },
+      hiddenMenu: {
+        position: 'fixed',
+        width: '100%',
+        height: '100%',
+        background: 'white',
+        left: '0',
+        top: '0',
+        zIndex: '3',
+        transition: '1s',
+        top: '-100%',
+        transitionTimingFunction: 'cubic-bezier(.17,.67,.83,.67)'
+       }
        })
-       console.log(this.state.topBar);
      }
  
   };
+
+  dividerAnimeOne = ()=>{
+    if(this.state.dividerLineOne.width === '100px'){
+      this.setState({dividerLineOne: {
+        width: '50%',
+        height: '5px',
+        background: '#ffce0a',
+        transition: '0.5s'
+        }})
+    } else{
+      this.setState({dividerLineOne: {
+        width: '100px',
+        height: '5px',
+        background: '#ffce0a',
+        transition: '0.5s'
+        }})
+    }
+  };
+  dividerAnimeOneL = ()=>{
+      this.setState({dividerLineOne: {
+        width: '100px',
+        height: '5px',
+        background: '#ffce0a',
+        transition: '0.5s'
+        }})
+  };
+  dividerAnimeTwo = ()=>{
+    if(this.state.dividerLineTwo.width === '100px'){
+      this.setState({dividerLineTwo: {
+        width: '50%',
+        height: '5px',
+        background: '#ffce0a',
+        transition: '0.5s'
+        }})
+    } else{
+      this.setState({dividerLineTwo: {
+        width: '100px',
+        height: '5px',
+        background: '#ffce0a',
+        transition: '0.5s'
+        }})
+    }
+  };
+  dividerAnimeTwoL = ()=>{
+    this.setState({dividerLineTwo: {
+      width: '100px',
+      height: '5px',
+      background: '#ffce0a',
+      transition: '0.5s'
+      }})
+};
+  dividerAnimeThree = ()=>{
+    if(this.state.dividerLineThree.width === '100px'){
+      this.setState({dividerLineThree: {
+        width: '50%',
+        height: '5px',
+        background: '#ffce0a',
+        transition: '0.5s'
+        }})
+    } else{
+      this.setState({dividerLineThree: {
+        width: '100px',
+        height: '5px',
+        background: '#ffce0a',
+        transition: '0.5s'
+        }})
+    }
+  };
+  dividerAnimeThreeL = ()=>{
+    this.setState({dividerLineThree: {
+      width: '100px',
+      height: '5px',
+      background: '#ffce0a',
+      transition: '0.5s'
+      }})
+};
+  dividerAnimeFour = ()=>{
+    if(this.state.dividerLineFour.width === '100px'){
+      this.setState({dividerLineFour: {
+        width: '50%',
+        height: '5px',
+        background: '#ffce0a',
+        transition: '0.5s'
+        }})
+    } else{
+      this.setState({dividerLineFour: {
+        width: '100px',
+        height: '5px',
+        background: '#ffce0a',
+        transition: '0.5s'
+        }})
+    }
+  };
+  dividerAnimeFourL = ()=>{
+    this.setState({dividerLineFour: {
+      width: '100px',
+      height: '5px',
+      background: '#ffce0a',
+      transition: '0.5s'
+      }})
+};
+
+navOnClick = () =>{
+  this.setState({
+    topBar: {
+      position: 'absolute',
+      width: '100%',
+      height: '10px',
+      background: 'white',
+      top: '20%',
+      transition: '1s'
+    },
+      bottomBar: {
+      position: 'absolute',
+      width: '100%',
+      height: '10px',
+      background: 'white',
+      top: '60%',
+      transition: '1s'
+    },
+      hiddenMenu: {
+      position: 'fixed',
+      width: '100%',
+      height: '100%',
+      background: 'white',
+      left: '0',
+      top: '0',
+      zIndex: '3',
+      transition: '1s',
+      top: '-100%'
+    }
+  })
+}
 
   render() {
 
@@ -98,6 +287,34 @@ this.state = ({
      <div className="navbar-cont" onClick={this.barsAnime}>
      <div style={this.state.topBar} className="top-bar"></div>
      <div style={this.state.bottomBar} className="bottom-bar"></div>
+     </div>
+     <div style={this.state.hiddenMenu} className="hidden-navbar-menu">
+     <ul className="hidden-navbar-menu-ul">
+     <li>
+     <a onClick={this.navOnClick} onMouseEnter={this.dividerAnimeOne} onMouseLeave={this.dividerAnimeOneL} href="#">ABOUT</a>
+     <div style={this.state.dividerLineOne} className="divider-line"></div>
+     </li>
+     <li>
+     <a onClick={this.navOnClick} onMouseEnter={this.dividerAnimeTwo} onMouseLeave={this.dividerAnimeTwoL} href="#">SKILLS</a>
+     <div style={this.state.dividerLineTwo} className="divider-line"></div>
+     </li>
+     <li>
+     <a onClick={this.navOnClick} onMouseEnter={this.dividerAnimeThree} onMouseLeave={this.dividerAnimeThreeL} href="#">RECENT WORKS</a>
+     <div style={this.state.dividerLineThree} className="divider-line"></div>
+     </li>
+     <li>
+     <a onClick={this.navOnClick} onMouseEnter={this.dividerAnimeFour} onMouseLeave={this.dividerAnimeFourL} href="#">CONTACT</a>
+     <div style={this.state.dividerLineFour} className="divider-line"></div>
+     </li>
+     </ul>
+     </div>
+
+     <div className="smedia-cont">
+     <p className="smedia-title">Social Media</p>
+     <div className="smedia"><p className="linkedin">LinkedIn</p></div>
+     <div className="smedia"><p className="github">GitHub</p></div>
+     <div className="smedia"><p className="codepen">CodePen</p></div>
+     <div className="smedia"><p className="free-code-camp">FreeCodeCamp</p></div>
      </div>
 
      <div className="welcome-page-cont">
@@ -155,12 +372,78 @@ this.state = ({
      <h1>My Recent Work</h1>
      <div className="container-fluid">
      <div className="row">
-     <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 project-img-cont"><img className="project-img" src={project1} /></div>
-     <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 project-img-cont"><img className="project-img" src={project2} /></div>
-     <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 project-img-cont"><img className="project-img" src={project3} /></div>
-     <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 project-img-cont"><img className="project-img" src={project4} /></div>
-     <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 project-img-cont"><img className="project-img" src={project5} /></div>
-     <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 project-img-cont"><img className="project-img" src={project6} /></div>
+     <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 project-img-cont"><div className="flip-box">
+     <div className="flip-box-inner">
+       <div className="flip-box-front">
+         <img className="project-img" src={project1} alt="project image" />
+       </div>
+       <div className="flip-box-back">
+         <h3>I used HTML, CSS3, Bootstrap, and Vanilla JS to build this project</h3>
+         <h4>Personal Portfolio</h4>
+         <button>View <i className="glyphicon glyphicon-chevron-right"></i></button>
+       </div>
+     </div>
+   </div></div>
+     <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 project-img-cont"><div className="flip-box">
+     <div className="flip-box-inner">
+       <div className="flip-box-front">
+         <img className="project-img" src={project2} alt="project image" />
+       </div>
+       <div className="flip-box-back">
+         <h3>I used Bootstrap, Adobe XD, React, React-Router, Axios, Node JS, Express JS, and Mongoose to build this project.</h3>
+         <h4>Login and Register Users</h4>
+         <button>View <i className="glyphicon glyphicon-chevron-right"></i></button>
+       </div>
+     </div>
+   </div></div>
+     <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 project-img-cont"><div className="flip-box">
+     <div className="flip-box-inner">
+       <div className="flip-box-front">
+         <img className="project-img" src={project3} alt="project image" />
+       </div>
+       <div className="flip-box-back">
+         <h3>I used HTML, CSS, Bootstrap, and Angular to fetch data from Github API and deploy it to heroku web hosting.</h3>
+         <h4>Search Github Users</h4>
+         <button>View <i className="glyphicon glyphicon-chevron-right"></i></button>
+       </div>
+     </div>
+   </div></div>
+     <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 project-img-cont"><div className="flip-box">
+     <div className="flip-box-inner">
+       <div className="flip-box-front">
+         <img className="project-img" src={project4} alt="project image" />
+       </div>
+       <div className="flip-box-back">
+         <h3>I used HTML, CSS, Bootstrap 4, and Adobe XD to build this project.</h3>
+         <h4>Login Screen</h4>
+         <button>View <i className="glyphicon glyphicon-chevron-right"></i></button>
+       </div>
+     </div>
+   </div></div>
+     <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 project-img-cont"><div className="flip-box">
+     <div className="flip-box-inner">
+       <div className="flip-box-front">
+         <img className="project-img" src={project5} alt="project image" />
+       </div>
+       <div className="flip-box-back">
+         <h3>I used HTML, CSS, Bootstrap 3 & 4, and Adobe Photoshop to build this project.</h3>
+         <h4>Marketing Platform</h4>
+         <button>View <i className="glyphicon glyphicon-chevron-right"></i></button>
+       </div>
+     </div>
+   </div></div>
+     <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 project-img-cont"><div className="flip-box">
+     <div className="flip-box-inner">
+       <div className="flip-box-front">
+         <img className="project-img" src={project6} alt="project image" />
+       </div>
+       <div className="flip-box-back">
+         <h3>I used HTML, CSS, and Bootstrap 3 to build this project.</h3>
+         <h4>Book a Flight</h4>
+         <button>View <i className="glyphicon glyphicon-chevron-right"></i></button>
+       </div>
+     </div>
+   </div></div>
      </div>
      </div>
      </div>
