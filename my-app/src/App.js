@@ -317,6 +317,12 @@ navOnClick = () =>{
      <div className="smedia"><p className="free-code-camp">FreeCodeCamp</p></div>
      </div>
 
+     <div className="spread-love-cont">
+     <p>SPREAD THE LOVE</p>
+     <p>0 LOVES</p>
+     <i className="glyphicon glyphicon-heart-empty"></i>
+     </div>
+
      <div className="welcome-page-cont">
      
      <video className="welcome-page-vid" autoPlay="true" loop="true">
