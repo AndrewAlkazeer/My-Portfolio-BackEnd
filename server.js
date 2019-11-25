@@ -51,19 +51,32 @@ app.post('/loves', (req, res)=>{
   Mongoose.connect(process.env.URI, { useNewUrlParser: true }, (err)=>{
     if(err) throw err;
 
-// Error Here needs to be fixed
+// Error Here needs to be fixed doesnt add another love if its saved under the same IP YOO!HOO! :D
 
-  if(!req.ip){
+modelClassLove.find({IP: req.ip, Love: 1}, (err, result)=>{
+if(err) {console.log('Error finding in the database')};
+if(!result.length){
+console.log(result.length);
+console.log(req.ip);
   var data = new modelClassLove({
     IP: req.ip,
     Love: 1
   })
   data.save((err)=>{
     if(err) throw err;
-  })
-}
+  });
+ // Mongoose.connection.close();
+ 
+} //else{
+  // console.log('You already Spread the Love :)');
+//  Mongoose.connection.close();
+//}
 });
-return res.redirect('/');
+
+  
+
+});
+// return res.redirect('/');
 });
 
 app.post('/submit', (req, res)=>{
@@ -83,7 +96,7 @@ app.post('/submit', (req, res)=>{
         if(err) console.log('Error Saving to the database');
       });
 
-      res.send('YOUR MESSAGE HAS BEEN SUBMITTED SUCCESSFULLY, I WILL GET BACK TO YOU ASAP!');
+    return res.send('YOUR MESSAGE HAS BEEN SUBMITTED SUCCESSFULLY, I WILL GET BACK TO YOU ASAP!');
 
     } else{
       var data = new modelClass({
@@ -99,7 +112,7 @@ app.post('/submit', (req, res)=>{
       
      res.send('YOUR MESSAGE HAS BEEN SUBMITTED SUCCESSFULLY, I WILL GET BACK TO YOU ASAP!');
     }
-
+   Mongoose.connection.close();
   })
 
 });
