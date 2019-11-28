@@ -41,11 +41,11 @@ app.use(useragent.express());
 // changed path to public but it should be back to build
 
 // Serve static files from the React frontend app
-app.use(express.static(path.join(__dirname, 'my-app/build')))
+//app.use(express.static(path.join(__dirname, 'my-app/build')))
 // Anything that doesn't match the above, send back index.html
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/my-app/build/index.html'))
-})
+//app.get('*', (req, res) => {
+  //res.sendFile(path.join(__dirname + '/my-app/build/index.html'))
+//})
  // Exprees will serve up production assets
   
   //  app.use(express.static(__dirname + '/client/build'));
@@ -58,10 +58,10 @@ app.get('*', (req, res) => {
     });
  */
 
-app.post('/', (req, res)=>{
+app.get('*', (req, res, next)=>{
   //var computerName = OS.hostname();
   //var info = req.useragent.browser;
-console.log('i am in main url');
+
 Mongoose.connect(process.env.URI, { useNewUrlParser: true }, (err)=>{
 
   if(err) throw err;
@@ -83,10 +83,11 @@ Mongoose.connect(process.env.URI, { useNewUrlParser: true }, (err)=>{
   });
   //Mongoose.connection.close();
 });
+next();
 })
 
 
-app.post('/loves', (req, res)=>{
+app.post('/loves', (req, res, next)=>{
 
   Mongoose.connect(process.env.URI, { useNewUrlParser: true }, (err)=>{
     if(err) throw err;
@@ -112,8 +113,8 @@ if(!result.length){
 });
 //Mongoose.connection.close();
 });
-   return res.redirect('/');
-   
+   res.redirect('/');
+   next();
 });
 
 app.get('/hearts', (req, res)=>{
@@ -121,7 +122,7 @@ app.get('/hearts', (req, res)=>{
     if(err) throw err;
     modelClassLove.find({Love: 1}, (err, love)=>{
       if(err) throw err;
-     return res.json(love);
+    res.json(love);
     });
   })
 })

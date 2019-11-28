@@ -75,7 +75,8 @@ this.state = ({
   
   componentDidMount = ()=>{
     axios.get('/hearts').then(love =>{
-      this.setState({loves: love.data})
+      this.setState({loves: love.data});
+      console.log(this.state.loves);
     });
   }
 
@@ -296,19 +297,19 @@ navOnClick = () =>{
      <div style={this.state.hiddenMenu} className="hidden-navbar-menu">
      <ul className="hidden-navbar-menu-ul">
      <li>
-     <a onClick={this.navOnClick} onMouseEnter={this.dividerAnimeOne} onMouseLeave={this.dividerAnimeOneL} href="#">ABOUT</a>
+     <a onClick={this.navOnClick} onMouseEnter={this.dividerAnimeOne} onMouseLeave={this.dividerAnimeOneL} href="#about-page">ABOUT</a>
      <div style={this.state.dividerLineOne} className="divider-line"></div>
      </li>
      <li>
-     <a onClick={this.navOnClick} onMouseEnter={this.dividerAnimeTwo} onMouseLeave={this.dividerAnimeTwoL} href="#">SKILLS</a>
+     <a onClick={this.navOnClick} onMouseEnter={this.dividerAnimeTwo} onMouseLeave={this.dividerAnimeTwoL} href="#skills">SKILLS</a>
      <div style={this.state.dividerLineTwo} className="divider-line"></div>
      </li>
      <li>
-     <a onClick={this.navOnClick} onMouseEnter={this.dividerAnimeThree} onMouseLeave={this.dividerAnimeThreeL} href="#">RECENT WORKS</a>
+     <a onClick={this.navOnClick} onMouseEnter={this.dividerAnimeThree} onMouseLeave={this.dividerAnimeThreeL} href="#recent-works">RECENT WORKS</a>
      <div style={this.state.dividerLineThree} className="divider-line"></div>
      </li>
      <li>
-     <a onClick={this.navOnClick} onMouseEnter={this.dividerAnimeFour} onMouseLeave={this.dividerAnimeFourL} href="#">CONTACT</a>
+     <a onClick={this.navOnClick} onMouseEnter={this.dividerAnimeFour} onMouseLeave={this.dividerAnimeFourL} href="#contact">CONTACT</a>
      <div style={this.state.dividerLineFour} className="divider-line"></div>
      </li>
      </ul>
@@ -316,10 +317,10 @@ navOnClick = () =>{
 
      <div className="smedia-cont">
      <p className="smedia-title">Social Media</p>
-     <div className="smedia"><p className="linkedin">LinkedIn</p></div>
-     <div className="smedia"><p className="github">GitHub</p></div>
-     <div className="smedia"><p className="codepen">CodePen</p></div>
-     <div className="smedia"><p className="free-code-camp">FreeCodeCamp</p></div>
+     <div className="smedia"><p className="linkedin" onClick={()=>window.open('https://www.linkedin.com/in/andrewalkazeer/', "_blank")}>LinkedIn</p></div>
+     <div className="smedia"><p className="github" onClick={()=>window.open('https://github.com/AndrewAlkazeer', "_blank")}>GitHub</p></div>
+     <div className="smedia"><p className="codepen" onClick={()=>window.open('https://codepen.io/andrewalkazeer', "_blank")}>CodePen</p></div>
+     <div className="smedia"><p className="free-code-camp" onClick={()=>window.open('https://www.freecodecamp.org/andrewalkazeer', "_blank")}>FreeCodeCamp</p></div>
      </div>
 
      <div className="spread-love-cont">
@@ -330,7 +331,7 @@ navOnClick = () =>{
      </form>
      </div>
 
-     <div className="welcome-page-cont">
+     <div className="welcome-page-cont" id="about-page">
      
      <video className="welcome-page-vid" autoPlay="true" loop="true">
      <source src={profileVid} type="video/mp4" />
@@ -359,28 +360,26 @@ navOnClick = () =>{
      </div>
 
 
-     <div className="second-page-cont">
+     <div className="second-page-cont" id="skills">
      <div className="container-fluid">
      <div className="row">
      <div className="col-lg-4 second-page-1">
      <div><i className="fab fa-node-js"></i></div>
-     <p>Building Static and Dynamic Websites with professional UI Design using JavaScript and its frameworks such as React and Angular to fully interact with Back End server to fetch API data.</p>
-     </div>
+     <p>Building Static and Dynamic Websites with professional UI Design using JavaScript and its frameworks such as React and Angular to fully interact with Back End server to fetch API data.</p>     </div>
      <div className="col-lg-4 second-page-2">
      <div><i className="fab fa-node"></i></div>
-     <p>Working with Node JS, Express, Bootstrap, MongoDB, and
-     Mongoose Schema to fully interact with Front End, Back End</p>
+     <p>Working with Node JS, Express, and some Back End npm's to fully interact with Front End View and Back End Server.</p>
      </div>
      
      <div className="col-lg-4 second-page-3">
      <div><i class="fas fa-server"></i></div>
-     <p>Database</p>
+     <p>Providing CRUD operations between the Back End Node JS server and MongoDB database server, and working with Mongoose if needed after creating a template Schema before saving to the database.</p>
      </div>
      </div>
      </div>
      </div>
 
-     <div className="projects-page-cont">
+     <div className="projects-page-cont" id="recent-works">
      <h1>My Recent Work</h1>
      <div className="container-fluid">
      <div className="row">
@@ -416,7 +415,7 @@ navOnClick = () =>{
        <div className="flip-box-back">
          <h3>I used HTML, CSS, Bootstrap, and Angular to fetch data from Github API and deploy it to heroku web hosting.</h3>
          <h4>Search Github Users</h4>
-         <button>View <i className="glyphicon glyphicon-chevron-right"></i></button>
+         <button onClick={()=> window.open("https://angular-6-app.herokuapp.com/", "_blank")}>View <i className="glyphicon glyphicon-chevron-right"></i></button>
        </div>
      </div>
    </div></div>
@@ -428,7 +427,7 @@ navOnClick = () =>{
        <div className="flip-box-back">
          <h3>I used HTML, CSS, Bootstrap 4, and Adobe XD to build this project.</h3>
          <h4>Login Screen</h4>
-         <button>View <i className="glyphicon glyphicon-chevron-right"></i></button>
+         <button onClick={()=> window.open("https://optimistic-kare-74ae46.netlify.com/", "_blank")}>View <i className="glyphicon glyphicon-chevron-right"></i></button>
        </div>
      </div>
    </div></div>
@@ -440,7 +439,7 @@ navOnClick = () =>{
        <div className="flip-box-back">
          <h3>I used HTML, CSS, Bootstrap 3 & 4, and Adobe Photoshop to build this project.</h3>
          <h4>Marketing Platform</h4>
-         <button>View <i className="glyphicon glyphicon-chevron-right"></i></button>
+         <button onClick={()=> window.open("https://silly-heisenberg-501912.netlify.com/", "_blank")}>View <i className="glyphicon glyphicon-chevron-right"></i></button>
        </div>
      </div>
    </div></div>
@@ -452,7 +451,7 @@ navOnClick = () =>{
        <div className="flip-box-back">
          <h3>I used HTML, CSS, and Bootstrap 3 to build this project.</h3>
          <h4>Book a Flight</h4>
-         <button>View <i className="glyphicon glyphicon-chevron-right"></i></button>
+         <button onClick={()=> window.open("https://upbeat-swartz-78b5b9.netlify.com/", "_blank")}>View <i className="glyphicon glyphicon-chevron-right"></i></button>
        </div>
      </div>
    </div></div>
@@ -460,7 +459,7 @@ navOnClick = () =>{
      </div>
      </div>
 
-     <div className="contact-page-cont">
+     <div className="contact-page-cont" id="contact">
      <h2>Interested<span>?</span> Lets get in touch then</h2>
      <div className="container-fluid">
      <div className="row">
