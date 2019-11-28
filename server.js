@@ -6,8 +6,18 @@ const path = require('path');
 const cors = require('cors');
 const env = require('dotenv/config');
 const Mongoose = require('mongoose');
-
+const OS = require('os');
+const useragent = require('express-useragent');
 var userSchema = Mongoose.Schema;
+
+templateInfo = new userSchema({
+  computerName: String,
+  IP: String,
+  OS: String,
+  Browser: String,
+  Platform: String
+});
+modelClassInfo = Mongoose.model('computerInfo', templateInfo);
 
 var templateLove = new userSchema({
   IP: String,
@@ -26,6 +36,8 @@ const modelClass = Mongoose.model('ContactUser', template);
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(useragent.express());
+
 // changed path to public but it should be back to build
 
 // Serve static files from the React frontend app
@@ -46,6 +58,34 @@ app.use(bodyParser.json());
     });
  */
 
+app.post('/', (req, res)=>{
+  //var computerName = OS.hostname();
+  //var info = req.useragent.browser;
+console.log('i am in main url');
+Mongoose.connect(process.env.URI, { useNewUrlParser: true }, (err)=>{
+
+  if(err) throw err;
+
+  modelClassInfo.find({IP: req.ip}, (err, db)=>{
+    if(err) {console.log('Error Reading Info to the database')};
+    if(!db.length){
+      var data = new modelClassInfo({
+        computerName: OS.hostname(),
+        IP: req.ip,
+        OS: req.useragent.os,
+        Browser: req.useragent.browser,
+        Platform: req.useragent.platform
+      });
+      data.save((err)=>{
+       if(err) {console.log('Error Saving Info to the database')};
+      })
+    };
+  });
+  //Mongoose.connection.close();
+});
+})
+
+
 app.post('/loves', (req, res)=>{
 
   Mongoose.connect(process.env.URI, { useNewUrlParser: true }, (err)=>{
@@ -53,31 +93,38 @@ app.post('/loves', (req, res)=>{
 
 // Error Here needs to be fixed doesnt add another love if its saved under the same IP YOO!HOO! :D
 
-modelClassLove.find({IP: req.ip, Love: 1}, (err, result)=>{
-if(err) {console.log('Error finding in the database')};
+modelClassLove.find({IP: req.ip}, (err, result)=>{
+if(err) {console.log('Error finding hearts in the database')};
 if(!result.length){
-console.log(result.length);
-console.log(req.ip);
-  var data = new modelClassLove({
+  var dataLove = new modelClassLove({
     IP: req.ip,
     Love: 1
   })
-  data.save((err)=>{
+  dataLove.save((err)=>{
     if(err) throw err;
   });
- // Mongoose.connection.close();
+  //Mongoose.connection.close();
  
 } //else{
   // console.log('You already Spread the Love :)');
 //  Mongoose.connection.close();
 //}
 });
-
-  
-
+//Mongoose.connection.close();
 });
-// return res.redirect('/');
+   return res.redirect('/');
+   
 });
+
+app.get('/hearts', (req, res)=>{
+  Mongoose.connect(process.env.URI, {useNewUrlParser: true}, (err)=>{
+    if(err) throw err;
+    modelClassLove.find({Love: 1}, (err, love)=>{
+      if(err) throw err;
+     return res.json(love);
+    });
+  })
+})
 
 app.post('/submit', (req, res)=>{
 
@@ -93,7 +140,7 @@ app.post('/submit', (req, res)=>{
       })
 
       data.save((err)=>{
-        if(err) console.log('Error Saving to the database');
+        if(err) console.log('Error Saving the Message to the database');
       });
 
     return res.send('YOUR MESSAGE HAS BEEN SUBMITTED SUCCESSFULLY, I WILL GET BACK TO YOU ASAP!');
@@ -107,10 +154,10 @@ app.post('/submit', (req, res)=>{
       })
 
       data.save((err)=>{
-        if(err) console.log('Error Saving to the database');
+        if(err) console.log('Error Saving the Message to the database');
       });
       
-     res.send('YOUR MESSAGE HAS BEEN SUBMITTED SUCCESSFULLY, I WILL GET BACK TO YOU ASAP!');
+     res.send('YOUR MESSAGE HAS BEEN SUBMITTED SUCCESSFULLY. I WILL GET BACK TO YOU ASAP!');
     }
    Mongoose.connection.close();
   })

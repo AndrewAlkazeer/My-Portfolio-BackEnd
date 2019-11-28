@@ -1,9 +1,11 @@
 // import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 import React, { Component } from 'react';
 //import profileImg from './images/20190308_164453.jpg';
 import profileVid from './images/PEOPLE_V3_2.mp4';
 import profileImg from './images/Resume Photo.png';
+import Resume from './images/Andrew-Alkazeer-Resume.pdf';
 import project1 from './images/01_Screenshot (2).jpg';
 import project2 from './images/login with register backend.png';
 import project3 from './images/Angular-App.png';
@@ -16,6 +18,7 @@ constructor(props){
   super(props);
 
 this.state = ({
+    loves: [],
     topBar: {
     position: 'absolute',
     width: '100%',
@@ -70,12 +73,14 @@ this.state = ({
 })
 }
   
-  componentDidMount(){
-
+  componentDidMount = ()=>{
+    axios.get('/hearts').then(love =>{
+      this.setState({loves: love.data})
+    });
   }
 
   barsAnime = ()=>{
-
+    console.log(this.state.loves.length);
      if(this.state.topBar.top === '20%'){
        this.setState({topBar: {
         position: 'absolute',
@@ -319,7 +324,7 @@ navOnClick = () =>{
 
      <div className="spread-love-cont">
      <p>SPREAD THE LOVE</p>
-     <p>0 LOVES</p>
+     <p>{this.state.loves.length} HEARTS</p>
      <form action="/loves" method="POST">
      <button type="submit"><i className="glyphicon glyphicon-heart-empty"></i></button>
      </form>
@@ -333,7 +338,6 @@ navOnClick = () =>{
 
      <div className="scroll-cont"><p>Scroll <i className="glyphicon glyphicon-chevron-right"></i></p></div>
      </div>
- 
 
      <div className="about-section-cont">
      <div className="about-section-img-cont">
@@ -345,7 +349,7 @@ navOnClick = () =>{
      <h1>Andrew Alkazeer</h1>
      <h2>Web Developer<span>/</span>Designer <span>&&</span> Salesman</h2>
      <h3>Hireable? <span>YES</span></h3>
-     <div><button>View Resume<i className="glyphicon glyphicon-chevron-right"></i></button></div>
+     <div><button onClick={()=> window.open(Resume+"#view=Fit", "_blank")}>View Resume<i className="glyphicon glyphicon-chevron-right"></i></button></div>
      </div>
      <div className="col-lg-6 col-md-6 about-section-info-2">
      <p>I am self taught web development and design. I enjoy building websites with a beautiful and professional user interface using HTML, CSS, Bootstrap, Vanilla JS, and JavaScript with React, jQuery and Angular frameworks. I have some knowledge about graphic design using Adobe XD, Illustrator and Photoshop. I am currently in school for Back End and improving myself in Front End. Willing to work independently as well as with a team to provide an excellent performance, bug fixes, and problem solving as a Front End and Back End Developer.</p>
@@ -388,7 +392,7 @@ navOnClick = () =>{
        <div className="flip-box-back">
          <h3>I used HTML, CSS3, Bootstrap, and Vanilla JS to build this project</h3>
          <h4>Personal Portfolio</h4>
-         <button>View <i className="glyphicon glyphicon-chevron-right"></i></button>
+         <button onClick={()=> window.open("https://romantic-mayer-479121.netlify.com/", "_blank")}>View <i className="glyphicon glyphicon-chevron-right"></i></button>
        </div>
      </div>
    </div></div>
@@ -400,7 +404,7 @@ navOnClick = () =>{
        <div className="flip-box-back">
          <h3>I used Bootstrap, Adobe XD, React, React-Router, Axios, Node JS, Express JS, and Mongoose to build this project.</h3>
          <h4>Login and Register Users</h4>
-         <button>View <i className="glyphicon glyphicon-chevron-right"></i></button>
+         <button onClick={()=> window.open("https://login-ui-react-node-mongoose.herokuapp.com/", "_blank")}>View <i className="glyphicon glyphicon-chevron-right"></i></button>
        </div>
      </div>
    </div></div>

@@ -263,6 +263,10 @@ code {
   top: 10px;
 }
 
+.glyphicon-chevron-right{
+  margin-left: 10px;
+}
+
 .about-section-info-2{
   height: auto;
 }
@@ -286,7 +290,7 @@ code {
 }
 
 .second-page-1{
-  height: 50vh;
+  height: auto;
   position: relative;
 }
 
@@ -321,7 +325,7 @@ code {
 }
 
 .second-page-2{
-  height: 50vh;
+  height: auto;
   position: relative;
 }
 
@@ -356,7 +360,7 @@ code {
 }
 
 .second-page-3{
-  height: 50vh;
+  height: auto;
   position: relative;
 }
 
