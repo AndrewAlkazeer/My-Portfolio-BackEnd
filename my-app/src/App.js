@@ -1,8 +1,8 @@
 // import logo from './logo.svg';
 import './App.css';
+//import '../public/favicon.ico';
 import axios from 'axios';
 import React, { Component } from 'react';
-//import profileImg from './images/20190308_164453.jpg';
 import profileVid from './images/PEOPLE_V3_2.mp4';
 import profileImg from './images/Resume Photo.png';
 import Resume from './images/Andrew-Alkazeer-Resume.pdf';
