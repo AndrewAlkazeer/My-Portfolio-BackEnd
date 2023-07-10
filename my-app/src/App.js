@@ -333,7 +333,7 @@ navOnClick = () =>{
 
      <div className="welcome-page-cont" id="about-page">
      
-     <video className="welcome-page-vid" autoPlay="true" loop="true">
+     <video className="welcome-page-vid" autoPlay muted loop>
      <source src={profileVid} type="video/mp4" />
      </video>
 
